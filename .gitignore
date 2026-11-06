@@ -41,4 +41,21 @@ build/
 *.log
 
 /spec/
+
+# Local environment variables and credentials
 .env
+.env.*
+!.env.example
+*.local
+application-local.properties
+application-*.local.properties
+
+# Private keys, certificates, and credential files
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials.json
+/secrets/
