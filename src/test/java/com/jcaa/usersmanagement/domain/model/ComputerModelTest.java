@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 class ComputerModelTest {
 
   private ComputerBrand brand;
+
   private Category category;
   private ComputerProcessor processor;
   private ComputerMemory memory;
