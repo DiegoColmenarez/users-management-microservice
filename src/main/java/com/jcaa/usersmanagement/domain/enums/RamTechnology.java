@@ -1,5 +1,7 @@
 package com.jcaa.usersmanagement.domain.enums;
 
+import com.jcaa.usersmanagement.domain.exception.InvalidComputerMemoryException;
+
 public enum RamTechnology {
     DDR3("DDR3"),
     DDR4("DDR4"),
@@ -23,5 +25,14 @@ public enum RamTechnology {
             }
         }
         return false;
+    }
+
+    public static RamTechnology fromValue(String value) {
+        for (RamTechnology technology : RamTechnology.values()) {
+            if (technology.value.equalsIgnoreCase(value)) {
+                return technology;
+            }
+        }
+        throw InvalidComputerMemoryException.becauseTechnologyIsInvalid();
     }
 }
