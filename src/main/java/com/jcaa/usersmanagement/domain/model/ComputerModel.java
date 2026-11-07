@@ -1,5 +1,6 @@
 package com.jcaa.usersmanagement.domain.model;
 
+import com.jcaa.usersmanagement.domain.enums.Category;
 import com.jcaa.usersmanagement.domain.valueobject.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,7 +12,7 @@ public class ComputerModel {
 
     @EqualsAndHashCode.Include
     private final ComputerId id;
-
+    private Category computerCategory;
     private ComputerBrand brand;
     private ComputerProcessor processor;
     private ComputerMemory memory;
@@ -22,6 +23,7 @@ public class ComputerModel {
 
     public ComputerModel(
             ComputerId id,
+            Category computerCategory,
             ComputerBrand brand,
             ComputerProcessor processor,
             ComputerMemory memory,
@@ -31,6 +33,7 @@ public class ComputerModel {
             ComputerPrice price) {
 
         this.id = id;
+        this.computerCategory = computerCategory;
         this.brand = brand;
         this.processor = processor;
         this.memory = memory;
@@ -42,6 +45,7 @@ public class ComputerModel {
 
     public static ComputerModel createNew(
             ComputerBrand brand,
+            Category computerCategory,
             ComputerProcessor processor,
             ComputerMemory memory,
             ComputerStorage storage,
@@ -50,7 +54,8 @@ public class ComputerModel {
             ComputerPrice price) {
 
         return new ComputerModel(
-                ComputerId.generate(),
+                        ComputerId.generate(),
+                computerCategory,
                 brand,
                 processor,
                 memory,
@@ -58,7 +63,7 @@ public class ComputerModel {
                 display,
                 ports,
                 price
-        );
+                );
     }
 
     public void updatePrice(ComputerPrice newPrice) {
