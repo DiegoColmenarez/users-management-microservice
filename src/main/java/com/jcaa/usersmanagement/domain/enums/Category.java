@@ -1,7 +1,6 @@
 package com.jcaa.usersmanagement.domain.enums;
 
 import com.jcaa.usersmanagement.domain.exception.InvalidComputerCategoryException;
-import org.model.exceptions.InvalidCategoryException;
 
 public enum Category {
     GAMING("GAMING"),
