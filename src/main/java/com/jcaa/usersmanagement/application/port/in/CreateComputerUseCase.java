@@ -6,5 +6,5 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 public interface CreateComputerUseCase {
-    ComputerModel execute(@NotNull @Valid CreateComputerCommand command);
+    void execute(@NotNull @Valid CreateComputerCommand command);
 }
