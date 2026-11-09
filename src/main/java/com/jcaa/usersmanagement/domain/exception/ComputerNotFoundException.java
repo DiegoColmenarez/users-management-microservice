@@ -1,6 +1,6 @@
 package com.jcaa.usersmanagement.domain.exception;
 
-public class ComputerNotFoundException extends RuntimeException {
+public class ComputerNotFoundException extends DomainException {
     public ComputerNotFoundException(String message) {
         super(message);
     }
