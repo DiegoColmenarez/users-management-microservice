@@ -18,10 +18,10 @@ public class CreateComputerService implements CreateComputerUseCase {
     private final Validator validator;
 
     @Override
-    public ComputerModel execute(final CreateComputerCommand command) {
+    public void execute(final CreateComputerCommand command) {
         validateCommand(command);
         final ComputerModel computerToSave = ComputerApplicationMapper.fromCreateCommandToModel(command);
-        return saveComputerPort.save(computerToSave);
+        saveComputerPort.save(computerToSave);
     }
 
     private void validateCommand(final CreateComputerCommand command) {

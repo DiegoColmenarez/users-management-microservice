@@ -22,12 +22,12 @@ public class UpdateComputerService implements UpdateComputerUseCase {
     private final Validator validator;
 
     @Override
-    public ComputerModel execute(final UpdateComputerCommand command) {
+    public void execute(final UpdateComputerCommand command) {
         validateCommand(command);
         final ComputerId computerId = ComputerId.fromString(command.id());
         findExistingComputerOrFail(computerId);
         final ComputerModel computerToUpdate = ComputerApplicationMapper.fromUpdateCommandToModel(command);
-        return updateComputerPort.update(computerToUpdate);
+        updateComputerPort.update(computerToUpdate);
     }
 
     private void validateCommand(final UpdateComputerCommand command) {
