@@ -5,6 +5,7 @@ import com.jcaa.usersmanagement.application.port.out.SaveComputerPort;
 import com.jcaa.usersmanagement.application.service.dto.command.CreateComputerCommand;
 import com.jcaa.usersmanagement.application.service.mapper.ComputerApplicationMapper;
 import com.jcaa.usersmanagement.domain.model.ComputerModel;
+import com.jcaa.usersmanagement.domain.valueobject.ComputerId;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
@@ -18,10 +19,11 @@ public class CreateComputerService implements CreateComputerUseCase {
     private final Validator validator;
 
     @Override
-    public void execute(final CreateComputerCommand command) {
+    public ComputerId execute(final CreateComputerCommand command) {
         validateCommand(command);
         final ComputerModel computerToSave = ComputerApplicationMapper.fromCreateCommandToModel(command);
         saveComputerPort.save(computerToSave);
+        return computerToSave.getId();
     }
 
     private void validateCommand(final CreateComputerCommand command) {
