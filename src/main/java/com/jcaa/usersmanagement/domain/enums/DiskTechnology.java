@@ -1,5 +1,7 @@
 package com.jcaa.usersmanagement.domain.enums;
 
+import com.jcaa.usersmanagement.domain.exception.InvalidComputerStorageException;
+
 public enum DiskTechnology {
     HDD,
     SSD,
@@ -20,6 +22,6 @@ public enum DiskTechnology {
                 return technology;
             }
         }
-        throw new IllegalArgumentException("Invalid DiskTechnology: " + value);
+        throw InvalidComputerStorageException.becauseTechnologyIsInvalid();
     }
 }
