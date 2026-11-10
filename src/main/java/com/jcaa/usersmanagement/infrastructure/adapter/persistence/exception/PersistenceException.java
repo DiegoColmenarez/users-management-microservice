@@ -9,6 +9,11 @@ public final class PersistenceException extends RuntimeException {
   private static final String MESSAGE_ALL = "Failed to retrieve all users.";
   private static final String MESSAGE_DELETE = "Failed to delete user with ID: '%s'.";
   private static final String MESSAGE_CONNECTION = "Could not establish database connection.";
+  private static final String MESSAGE_COMPUTER_SAVE   = "Failed to save computer with ID: '%s'.";
+  private static final String MESSAGE_COMPUTER_UPDATE = "Failed to update computer with ID: '%s'.";
+  private static final String MESSAGE_COMPUTER_FIND   = "Failed to find computer with ID: '%s'.";
+  private static final String MESSAGE_COMPUTER_ALL    = "Failed to retrieve all computers.";
+  private static final String MESSAGE_COMPUTER_DELETE = "Failed to delete computer with ID: '%s'.";
 
   private PersistenceException(final String message, final Throwable cause) {
     super(message, cause);
@@ -44,5 +49,25 @@ public final class PersistenceException extends RuntimeException {
 
   public static PersistenceException becauseConnectionFailed(final Throwable cause) {
     return new PersistenceException(MESSAGE_CONNECTION, cause);
+  }
+
+  public static PersistenceException becauseComputerSaveFailed(final String id, final Throwable cause) {
+    return new PersistenceException(String.format(MESSAGE_COMPUTER_SAVE, id), cause);
+  }
+
+  public static PersistenceException becauseComputerUpdateFailed(final String id, final Throwable cause) {
+    return new PersistenceException(String.format(MESSAGE_COMPUTER_UPDATE, id), cause);
+  }
+
+  public static PersistenceException becauseComputerFindAllFailed(final String id, final Throwable cause) {
+    return new PersistenceException(String.format(MESSAGE_COMPUTER_ALL, id), cause);
+  }
+
+  public static PersistenceException becauseComputerFindIdFailed(final String id, final Throwable cause) {
+    return new PersistenceException(String.format(MESSAGE_COMPUTER_FIND, id), cause);
+  }
+
+  public static PersistenceException becauseComputerDeleteFailed(final String id, final Throwable cause) {
+    return new PersistenceException(String.format(MESSAGE_COMPUTER_DELETE, id), cause);
   }
 }
