@@ -59,14 +59,13 @@ public final class PersistenceException extends RuntimeException {
     return new PersistenceException(String.format(MESSAGE_COMPUTER_UPDATE, id), cause);
   }
 
-  public static PersistenceException becauseComputerFindAllFailed(final String id, final Throwable cause) {
-    return new PersistenceException(String.format(MESSAGE_COMPUTER_ALL, id), cause);
+  public static PersistenceException becauseComputerFindAllFailed(final Throwable cause) {
+    return new PersistenceException(MESSAGE_COMPUTER_ALL, cause);
   }
 
-  public static PersistenceException becauseComputerFindIdFailed(final String id, final Throwable cause) {
-    return new PersistenceException(String.format(MESSAGE_COMPUTER_FIND, id), cause);
+  public static PersistenceException becauseComputerFindIdFailed(final String computerId, final Throwable cause) {
+    return new PersistenceException(String.format(MESSAGE_COMPUTER_FIND, computerId), cause);
   }
-
   public static PersistenceException becauseComputerDeleteFailed(final String id, final Throwable cause) {
     return new PersistenceException(String.format(MESSAGE_COMPUTER_DELETE, id), cause);
   }
