@@ -2,10 +2,12 @@ package com.jcaa.usersmanagement.infrastructure.entrypoint.rest.controller;
 
 import com.jcaa.usersmanagement.application.port.in.*;
 import com.jcaa.usersmanagement.domain.valueobject.ComputerId;
+import com.jcaa.usersmanagement.infrastructure.config.OpenApiConfig;
 import com.jcaa.usersmanagement.infrastructure.entrypoint.rest.dto.request.ComputerRestRequest;
 import com.jcaa.usersmanagement.infrastructure.entrypoint.rest.dto.response.ComputerIdRestResponse;
 import com.jcaa.usersmanagement.infrastructure.entrypoint.rest.dto.response.ComputerRestResponse;
 import com.jcaa.usersmanagement.infrastructure.entrypoint.rest.mapper.ComputerRestMapper;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/computers")
 @RequiredArgsConstructor
+@SecurityRequirement(name = OpenApiConfig.BEARER_AUTH)
 public class ComputerRestController {
 
     private final CreateComputerUseCase createComputerUseCase;
