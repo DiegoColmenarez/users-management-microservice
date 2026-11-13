@@ -23,3 +23,23 @@ VALUES (
     'ADMIN',
     'ACTIVE'
 );
+
+
+CREATE TABLE computers (
+                                         id               CHAR(36)      NOT NULL PRIMARY KEY,
+                                         brand            VARCHAR(50)   NOT NULL,
+                                         category         ENUM('GAMING','OFFICE','WORKSTATION','ULTRABOOK','ALL_IN_ONE') NOT NULL,
+                                         cpu_brand        VARCHAR(100)  NOT NULL,
+                                         cpu_speed        VARCHAR(20)   NOT NULL,   -- '3.5GHZ' o '3500MHZ'
+                                         ram_technology   VARCHAR(10)   NOT NULL,
+                                         ram_capacity     VARCHAR(20)   NOT NULL,   -- '16GB'
+                                         disk_technology  VARCHAR(10)   NOT NULL,
+                                         disk_capacity    VARCHAR(20)   NOT NULL,   -- '1TB'
+                                         usb_ports        INT UNSIGNED  NOT NULL DEFAULT 0,
+                                         hdmi_ports       INT UNSIGNED  NOT NULL DEFAULT 0,
+                                         monitor_brand    VARCHAR(100)  NOT NULL,
+                                         monitor_inches   DECIMAL(5,2)  NOT NULL,
+                                         price            DECIMAL(12,2) NOT NULL,
+                                         CONSTRAINT chk_computers_monitor_inches CHECK (monitor_inches > 0 AND monitor_inches <= 80),
+                                         CONSTRAINT chk_computers_price CHECK (price > 0 AND price <= 1000000)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
