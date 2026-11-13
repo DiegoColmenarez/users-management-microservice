@@ -37,20 +37,20 @@ public class GlobalExceptionHandler {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ApiErrorResponse handleConstraintViolation(final ConstraintViolationException exception) {
     final String message =
-        exception.getConstraintViolations().stream()
-            .map(v -> v.getPropertyPath() + ": " + v.getMessage())
-            .collect(Collectors.joining(", "));
+            exception.getConstraintViolations().stream()
+                    .map(v -> v.getPropertyPath() + ": " + v.getMessage())
+                    .collect(Collectors.joining(", "));
     return new ApiErrorResponse(HttpStatus.BAD_REQUEST.value(), message);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ApiErrorResponse handleMethodArgumentNotValid(
-      final MethodArgumentNotValidException exception) {
+          final MethodArgumentNotValidException exception) {
     final String message =
-        exception.getBindingResult().getFieldErrors().stream()
-            .map(e -> e.getField() + ": " + e.getDefaultMessage())
-            .collect(Collectors.joining(", "));
+            exception.getBindingResult().getFieldErrors().stream()
+                    .map(e -> e.getField() + ": " + e.getDefaultMessage())
+                    .collect(Collectors.joining(", "));
     return new ApiErrorResponse(HttpStatus.BAD_REQUEST.value(), message);
   }
 
@@ -63,15 +63,17 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(PersistenceException.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ApiErrorResponse handlePersistence(final PersistenceException ignored) {
+    ignored.printStackTrace();
     return new ApiErrorResponse(
-        HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error de persistencia.");
+            HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error de persistencia.");
   }
 
   @ExceptionHandler(Exception.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ApiErrorResponse handleGeneral(final Exception ignored) {
+    ignored.printStackTrace();
     return new ApiErrorResponse(
-        HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error interno del servidor.");
+            HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error interno del servidor.");
   }
 
   @ExceptionHandler(ComputerNotFoundException.class)
@@ -80,4 +82,3 @@ public class GlobalExceptionHandler {
     return new ApiErrorResponse(HttpStatus.NOT_FOUND.value(), exception.getMessage());
   }
 }
-
